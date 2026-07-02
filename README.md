@@ -59,6 +59,11 @@ Flash the `.hex` file using one of the following:
 - **dfu-programmer** — `dfu-programmer atmega32u4 erase && dfu-programmer atmega32u4 flash <file>.hex && dfu-programmer atmega32u4 reset` (the `reset` step exits the bootloader so the board comes back as a keyboard)
 - The board's native bootloader utility if applicable.
 
+> **Permissions (AVR / `dfu-programmer` only — not needed for UF2 drag-drop):**
+> - **Linux:** `dfu-programmer` accesses the bootloader over raw USB, so you'll likely need to run it with `sudo` — or, better, install [QMK's udev rules](https://docs.qmk.fm/#/faq_build?id=linux-udev-rules) (`50-qmk.rules`) so your user can flash without elevation. This is the same device-permission model that WebHID/Vial config relies on in the browser, but the browser and CLI are granted access separately.
+> - **Windows:** flashing itself doesn't need elevation, but the bootloader needs a libusb-compatible driver bound to it (commonly via [Zadig](https://zadig.akeo.ie/)) — installing that driver requires admin.
+> - **macOS:** generally no elevation needed.
+
 Consult the [QMK documentation](https://docs.qmk.fm/#/flashing) for board-specific bootloader entry methods.
 
 ---
