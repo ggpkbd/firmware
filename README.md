@@ -51,12 +51,12 @@ Drop the compiled file into the matching `<keyboard>/<stack>/` directory and add
 2. Drag and drop the `.uf2` file onto the `RPI-RP2` drive.
 3. The drive unmounts automatically when flashing is complete. Repeat for the second half if your Corne is split.
 
-### AVR boards — e.g. Planck, HotDox76 V2, Sofle (`.hex`)
+### AVR boards — e.g. HotDox76 V2, Sofle (`.hex`)
 
 Flash the `.hex` file using one of the following:
 
 - **QMK Toolbox** — open the file, put the board into bootloader mode, click Flash.
-- **dfu-programmer** — `dfu-programmer atmega32u4 erase && dfu-programmer atmega32u4 flash <file>.hex`
+- **dfu-programmer** — `dfu-programmer atmega32u4 erase && dfu-programmer atmega32u4 flash <file>.hex && dfu-programmer atmega32u4 reset` (the `reset` step exits the bootloader so the board comes back as a keyboard)
 - The board's native bootloader utility if applicable.
 
 Consult the [QMK documentation](https://docs.qmk.fm/#/flashing) for board-specific bootloader entry methods.
